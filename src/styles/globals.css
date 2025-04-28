@@ -1,0 +1,27 @@
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Custom styles */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.articles-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.article-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
+
+.sidebar {
+  @apply w-64 bg-gray-50 p-4;
+}
+
+.search-bar {
+  @apply w-full max-w-xl mx-auto my-4;
+}
+
+.category-filter {
+  @apply flex gap-2 my-4;
+} 

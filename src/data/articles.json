@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "title": "Getting Started with Next.js",
+      "excerpt": "Learn how to build modern web applications with Next.js",
+      "content": "Full article content here...",
+      "author": "John Doe",
+      "date": "2024-04-28",
+      "category": "Development",
+      "image": "/images/nextjs-article.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Understanding React Hooks",
+      "excerpt": "A comprehensive guide to React Hooks and their use cases",
+      "content": "Full article content here...",
+      "author": "Jane Smith",
+      "date": "2024-04-27",
+      "category": "React",
+      "image": "/images/react-hooks.jpg"
+    }
+  ]
+} 
