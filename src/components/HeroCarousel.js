@@ -26,26 +26,6 @@ export default function HeroCarousel({ articles }) {
 
   return (
     <div className="relative w-full h-[90vh] overflow-hidden">
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full z-10"
-        aria-label="Previous slide"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full z-10"
-        aria-label="Next slide"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      </button>
-
       {/* Slides */}
       <div className="relative h-full w-full">
         {featuredStories.map((story, index) => (
@@ -70,8 +50,31 @@ export default function HeroCarousel({ articles }) {
               
               {/* Content with container margin */}
               <div className="absolute bottom-0 left-0 right-0 mx-60 text-white">
-                <div className="w-[705px] h-[498px] bg-base text-primary p-8">
-                  <span className="inline-block py-1 rounded-full text-sm mb-4">
+                <div className="relative w-[705px] h-[498px] bg-base text-primary px-8">
+                  {/* Navigation buttons - inside content container at top right */}
+                  <div className="absolute top-0 right-[-64px] flex z-10">
+                    <button
+                      onClick={prevSlide}
+                      className="bg-primary text-base h-16 w-16 flex items-center justify-center"
+                      aria-label="Previous slide"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={nextSlide}
+                      className="bg-base text-primary h-16 w-16 flex items-center justify-center"
+                      aria-label="Next slide"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  <div className="py-16">
+                  <span className="inline-block py-1 rounded-full text-lgb-4">
                     {story.category}
                   </span>
                   <h2 className="text-6xl font-bold mb-4">{story.title}</h2>
@@ -81,14 +84,13 @@ export default function HeroCarousel({ articles }) {
                       Read More
                     </button>
                   </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      
     </div>
   );
 } 
