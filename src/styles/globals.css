@@ -20,14 +20,14 @@
 
 /* Dark mode styles */
 .dark {
-  @apply bg-base-dark text-primary-light;
+  @apply bg-base-dark text-primary-dark;
 }
 
 .dark .article-card {
   @apply bg-base-dark;
 }
 
-/* Custom styles using Tailwind v4 syntax */
+/* Custom styles using Tailwind v3 syntax */
 .container {
   @apply w-full max-w-5xl mx-auto px-4;
 }
