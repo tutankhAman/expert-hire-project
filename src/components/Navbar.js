@@ -9,7 +9,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 bg-transparent z-50 mt-10">
+    <nav className="sticky top-0 bg-transparent z-50 pt-10 px-60">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-9">
           {/* Hamburger Menu */}
