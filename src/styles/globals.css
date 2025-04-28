@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap');
 
-@import "tailwindcss/preflight";
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 @layer base {
@@ -19,7 +20,7 @@
 
 /* Dark mode styles */
 .dark {
-  @apply bg-base-dark text-primary-dark;
+  @apply bg-base-dark text-primary-light;
 }
 
 .dark .article-card {
@@ -28,64 +29,46 @@
 
 /* Custom styles using Tailwind v4 syntax */
 .container {
-  width: 100%;
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  @apply w-full max-w-5xl mx-auto px-4;
 }
 
 .articles-grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1.5rem;
+  @apply grid grid-cols-1 gap-6;
 }
 
 .article-card {
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  @apply bg-base rounded-lg shadow-md overflow-hidden;
 }
 
 .sidebar {
-  width: 16rem;
-  background-color: #f9fafb;
-  padding: 1rem;
+  @apply w-64 bg-base p-4;
 }
 
 .search-bar {
-  width: 100%;
-  max-width: 36rem;
-  margin: 1rem auto;
+  @apply w-full max-w-2xl mx-auto my-4;
 }
 
 .category-filter {
-  display: flex;
-  gap: 0.5rem;
-  margin: 1rem 0;
+  @apply flex gap-2 my-4;
 }
 
 /* Media queries for responsive design */
 @media (min-width: 640px) {
   .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    @apply px-6;
   }
   
   .articles-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    @apply grid-cols-2;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    @apply px-8;
   }
   
   .articles-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    @apply grid-cols-3;
   }
-} 
+}
