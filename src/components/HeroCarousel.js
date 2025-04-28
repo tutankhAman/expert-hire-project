@@ -45,11 +45,11 @@ export default function HeroCarousel({ articles }) {
                   className="object-cover"
                   priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent" />
               </div>
               
               {/* Content with container margin */}
-              <div className="absolute bottom-0 left-0 right-0 mx-60 text-white">
+              <div className="absolute bottom-0 left-0 right-0 mx-60 text-base">
                 <div className="relative w-[705px] h-[498px] bg-base text-primary px-8">
                   {/* Navigation buttons - inside content container at top right */}
                   <div className="absolute top-0 right-[-64px] flex z-10">
