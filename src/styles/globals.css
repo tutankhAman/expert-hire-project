@@ -1,27 +1,66 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
 
-/* Custom styles */
+/* Custom styles using Tailwind v4 syntax */
 .container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .articles-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
 .article-card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .sidebar {
-  @apply w-64 bg-gray-50 p-4;
+  width: 16rem;
+  background-color: #f9fafb;
+  padding: 1rem;
 }
 
 .search-bar {
-  @apply w-full max-w-xl mx-auto my-4;
+  width: 100%;
+  max-width: 36rem;
+  margin: 1rem auto;
 }
 
 .category-filter {
-  @apply flex gap-2 my-4;
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* Media queries for responsive design */
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .articles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .articles-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 } 

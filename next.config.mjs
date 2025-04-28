@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  // Explicitly disable App Router
+  experimental: {
+    appDir: false
+  }
+};
 
 export default nextConfig;
