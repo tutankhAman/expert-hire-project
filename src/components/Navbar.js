@@ -1,15 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 100); // Adjust this value based on your first section height
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 py-10 px-60">
+    <nav className={`fixed top-0 left-0 right-0 z-50 py-10 px-60 transition-colors duration-300 ${
+      isScrolled ? 'bg-neutral/95 backdrop-blur-sm' : ''
+    }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-9">
           {/* Hamburger Menu */}
