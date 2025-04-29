@@ -30,34 +30,34 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
   const remToPx = rem => rem * 16;
   
   return (
-    <div className="w-full my-12">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold">Explore by Category</h2>
+    <div className="w-full my-8 md:my-12">
+      <div className="flex justify-between items-center mb-4 md:mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold">Explore by Category</h2>
         <div className="flex space-x-2">
           <button 
             onClick={scrollLeft}
-            className="p-2 bg-primary text-neutral hover:bg-primary/90"
+            className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90"
             aria-label="Scroll left"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button 
             onClick={scrollRight}
-            className="p-2 bg-primary text-neutral hover:bg-primary/90"
+            className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90"
             aria-label="Scroll right"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
       </div>
-      <div className="min-h-[19.5rem] flex items-center">
+      <div className="min-h-[14rem] md:min-h-[19.5rem] flex items-center">
         <div 
           ref={carouselRef}
-          className="flex overflow-x-auto gap-7 scrollbar-hide w-full relative overflow-visible"
+          className="flex overflow-x-auto gap-4 md:gap-7 scrollbar-hide w-full relative overflow-visible"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {categories.map((category, idx) => (
