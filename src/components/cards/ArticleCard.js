@@ -9,7 +9,7 @@ export default function ArticleCard({ article }) {
   };
 
   return (
-    <article className="bg-neutral overflow-hidden hover:shadow-lg transition-shadow flex flex-row w-[1073px] h-[400px]">
+    <article className="bg-neutral overflow-hidden hover:shadow-lg transition-shadow flex flex-row h-[400px]">
       {/* Image on the left side */}
       <div className="relative h-[400px] w-[460px] flex-shrink-0">
         <Image

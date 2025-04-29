@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import HighlightsCard from '../cards/HighlightsCard';
 
 const highlights = [
   {
@@ -21,7 +22,7 @@ const highlights = [
 
 export default function Sidebar() {
   return (
-    <div className="space-y-8 mt-16">
+    <div className="space-y-16 mt-16">
       {/* Author Profile */}
       <div className="bg-neutral shadow-md px-6 border-2 relative border-black">
         <div className="text-center mb-6">
@@ -66,22 +67,7 @@ export default function Sidebar() {
       </div>
 
       {/* Highlights */}
-      <div className="bg-neutral rounded-xl p-6 shadow-md">
-        <h3 className="text-xl font-semibold mb-4">Highlights</h3>
-        <div className="space-y-4">
-          {highlights.map((highlight) => (
-            <div key={highlight.id} className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">✨</span>
-              </div>
-              <div>
-                <h4 className="font-medium mb-1">{highlight.title}</h4>
-                <p className="text-sm text-gray-600">{highlight.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <HighlightsCard />
     </div>
   );
 } 
