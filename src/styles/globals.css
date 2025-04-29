@@ -4,9 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+@layer neutral {
   html {
-    @apply bg-base text-primary;
+    @apply bg-neutral text-primary;
   }
 
   body {
@@ -24,11 +24,11 @@
 
 /* Dark mode styles */
 .dark {
-  @apply bg-base-dark text-primary-dark;
+  @apply bg-neutral-dark text-primary-dark;
 }
 
 .dark .article-card {
-  @apply bg-base-dark;
+  @apply bg-neutral-dark;
 }
 
 /* Custom styles using Tailwind v3 syntax */
@@ -41,11 +41,11 @@
 }
 
 .article-card {
-  @apply bg-base rounded-lg shadow-md overflow-hidden;
+  @apply bg-neutral rounded-lg shadow-md overflow-hidden;
 }
 
 .sidebar {
-  @apply w-64 bg-base p-4;
+  @apply w-64 bg-neutral p-4;
 }
 
 .search-bar {

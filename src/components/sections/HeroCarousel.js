@@ -49,13 +49,13 @@ export default function HeroCarousel({ articles }) {
               </div>
               
               {/* Content with container margin */}
-              <div className="absolute bottom-0 left-0 right-0 mx-60 text-base">
-                <div className="relative w-[705px] h-[498px] bg-base text-primary px-8">
+              <div className="absolute bottom-0 left-0 right-0 mx-60 text-neutral">
+                <div className="relative w-[705px] h-[498px] bg-neutral text-primary px-8">
                   {/* Navigation buttons - inside content container at top right */}
                   <div className="absolute top-0 right-[-64px] flex z-10">
                     <button
                       onClick={prevSlide}
-                      className="bg-primary text-base h-16 w-16 flex items-center justify-center"
+                      className="bg-primary text-neutral h-16 w-16 flex items-center justify-center"
                       aria-label="Previous slide"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -64,7 +64,7 @@ export default function HeroCarousel({ articles }) {
                     </button>
                     <button
                       onClick={nextSlide}
-                      className="bg-base text-primary h-16 w-16 flex items-center justify-center"
+                      className="bg-neutral text-primary h-16 w-16 flex items-center justify-center"
                       aria-label="Next slide"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -80,7 +80,7 @@ export default function HeroCarousel({ articles }) {
                   <h2 className="text-6xl font-bold mb-4">{story.title}</h2>
                   <p className="text-xl text-secondary mb-8">{story.excerpt}</p>
                   <Link href={`/article/${story.id}`}>
-                    <button className="bg-primary text-base px-9 py-4  hover:bg-gray-100 transition-colors">
+                    <button className="bg-primary text-neutral px-9 py-4  hover:bg-gray-100 transition-colors">
                       Read More
                     </button>
                   </Link>

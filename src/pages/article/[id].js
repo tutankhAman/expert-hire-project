@@ -17,7 +17,7 @@ export default function ArticlePage({ article }) {
         <div className="container mx-auto px-4 py-8">
           <div className="text-center py-12">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-pink-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
-              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !basespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !neutralspace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
             </div>
             <p className="mt-4 text-gray-600">Loading article...</p>
           </div>
@@ -38,7 +38,7 @@ export default function ArticlePage({ article }) {
             <p className="text-gray-600 mb-8">
               The article you are looking for might have been removed or is temporarily unavailable.
             </p>
-            <Link href="/" className="inline-block bg-pink-500 text-base px-6 py-3 rounded-full hover:bg-pink-600 transition-colors">
+            <Link href="/" className="inline-block bg-pink-500 text-neutral px-6 py-3 rounded-full hover:bg-pink-600 transition-colors">
               Return to Homepage
             </Link>
           </div>
@@ -59,7 +59,7 @@ export default function ArticlePage({ article }) {
             Back to Home
           </Link>
 
-          <article className="bg-base rounded-xl overflow-hidden shadow-md">
+          <article className="bg-neutral rounded-xl overflow-hidden shadow-md">
             <div className="relative h-96">
               <Image
                 src={article.image}
@@ -97,7 +97,7 @@ export async function getStaticPaths() {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const data = JSON.parse(fileContents);
   
-  // Get the paths we want to pre-render based on articles
+  // Get the paths we want to pre-render neutrald on articles
   const paths = data.articles.map((article) => ({
     params: { id: article.id },
   }));

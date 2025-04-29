@@ -36,7 +36,7 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
         <div className="flex space-x-2">
           <button 
             onClick={scrollLeft}
-            className="p-2 bg-primary text-base hover:bg-primary/90"
+            className="p-2 bg-primary text-neutral hover:bg-primary/90"
             aria-label="Scroll left"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,7 +45,7 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
           </button>
           <button 
             onClick={scrollRight}
-            className="p-2 bg-primary text-base hover:bg-primary/90"
+            className="p-2 bg-primary text-neutral hover:bg-primary/90"
             aria-label="Scroll right"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -69,7 +69,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="absolute top-16 bg-base/95 backdrop-blur-sm border-t border-gray-200">
+          <div className="absolute top-16 bg-neutral/95 backdrop-blur-sm border-t border-gray-200">
             <div className="flex flex-col space-y-2 py-4">
               <Link href="/" className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
                 Home

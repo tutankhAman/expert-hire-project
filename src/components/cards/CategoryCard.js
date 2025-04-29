@@ -44,8 +44,8 @@ export default function CategoryCard({ category, idx, hovered, setHovered, selec
         onMouseEnter={() => setHovered(idx)}
         onMouseLeave={() => setHovered(null)}
       >
-        <div className="h-1 w-16 bg-base mb-4 transition-all duration-300"></div>
-        <h2 className="text-xl font-semibold text-base">{category.title}</h2>
+        <div className="h-1 w-16 bg-neutral mb-4 transition-all duration-300"></div>
+        <h2 className="text-xl font-semibold text-neutral">{category.title}</h2>
       </button>
     </div>
   );
