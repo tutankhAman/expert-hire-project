@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function CompactArticleCard({ article }) {
   return (
-    <div className="flex flex-col h-full bg-white hover:shadow-md transition-shadow overflow-hidden">
+    <div className="flex flex-col h-full bg-neutral overflow-hidden">
       <div className="relative h-48 w-full">
         <Image
           src={article.image}
