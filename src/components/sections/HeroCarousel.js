@@ -79,10 +79,11 @@ export default function HeroCarousel({ articles }) {
                   </span>
                   <h2 className="text-6xl font-bold mb-4">{story.title}</h2>
                   <p className="text-xl text-secondary mb-8">{story.excerpt}</p>
-                  <Link href={`/article/${story.id}`}>
-                    <button className="bg-primary text-neutral px-9 py-4  hover:bg-gray-100 transition-colors">
-                      Read More
-                    </button>
+                  <Link 
+                    href={`/article/${story.id}`}
+                    className="inline-block bg-primary text-neutral px-9 py-4 hover:bg-gray-100 transition-colors"
+                  >
+                    Read More
                   </Link>
                   </div>
                 </div>
