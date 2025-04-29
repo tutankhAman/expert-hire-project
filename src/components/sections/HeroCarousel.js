@@ -32,7 +32,7 @@ export default function HeroCarousel({ articles }) {
           <div
             key={story.id}
             className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+              index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
             }`}
           >
             <div className="relative h-full w-full">
@@ -79,11 +79,18 @@ export default function HeroCarousel({ articles }) {
                   </span>
                   <h2 className="text-6xl font-bold mb-4">{story.title}</h2>
                   <p className="text-xl text-secondary mb-8">{story.excerpt}</p>
+                  {/* Adding data attribute with article ID for debugging and ensuring correct link */}
                   <Link 
                     href={`/article/${story.id}`}
-                    className="inline-block bg-primary text-neutral px-9 py-4 hover:bg-gray-100 transition-colors"
+                    passHref
+                    legacyBehavior
+                    data-article-id={story.id}
                   >
-                    Read More
+                    <a>
+                      <button className="bg-primary text-neutral px-9 py-4 hover:bg-gray-100 transition-colors">
+                        Read More
+                      </button>
+                    </a>
                   </Link>
                   </div>
                 </div>
@@ -94,4 +101,4 @@ export default function HeroCarousel({ articles }) {
       </div>
     </div>
   );
-} 
+}
