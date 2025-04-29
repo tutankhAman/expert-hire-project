@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": "stories",
+      "title": "Stories",
+      "image": "/images/category-images/stories.jpeg"
+    },
+    {
+      "id": "health",
+      "title": "Health",
+      "image": "/images/category-images/health.webp"
+    },
+    {
+      "id": "inspiration",
+      "title": "Inspiration",
+      "image": "/images/category-images/inspiration.jpeg"
+    },
+    {
+      "id": "lifestyle",
+      "title": "Lifestyle",
+      "image": "/images/category-images/lifestyle.jpeg"
+    },
+    {
+      "id": "parenting",
+      "title": "Parenting",
+      "image": "/images/category-images/parenting.jpeg"
+    },
+    {
+      "id": "nutrition",
+      "title": "Nutrition",
+      "image": "/images/category-images/nutrition.jpeg"
+    },
+    {
+      "id": "fitness",
+      "title": "Fitness",
+      "image": "/images/category-images/fitness.webp"
+    },
+    {
+      "id": "relationships",
+      "title": "Relationships",
+      "image": "/images/category-images/relationships.jpeg"
+    },
+    {
+      "id": "career",
+      "title": "Career",
+      "image": "/images/category-images/career.jpeg"
+    },
+    {
+      "id": "travel",
+      "title": "Travel",
+      "image": "/images/category-images/travel.jpeg"
+    }
+  ]
+}
