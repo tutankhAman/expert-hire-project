@@ -58,11 +58,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 py-10 px-60 transition-all duration-300 ${
+      <nav className={`fixed top-0 left-0 right-0 z-50 py-4 md:py-6 lg:py-10 px-4 md:px-8 lg:px-60 transition-all duration-300 ${
         isMenuOpen ? 'bg-primary/0 backdrop-blur-sm' : isScrolled ? 'bg-neutral/95 backdrop-blur-sm' : ''
       }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-9">
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between h-8 md:h-9">
             {/* Hamburger Menu */}
             <div className="flex items-center">
               <button
@@ -78,7 +78,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-8 h-8"
+                  className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
                 >
                   <path
                     strokeLinecap="round"
@@ -93,7 +93,7 @@ export default function Navbar() {
             <div className="flex-1 text-center">
               <Link 
                 href="/" 
-                className={`text-3xl font-bold font-heading transition-colors duration-300 ${
+                className={`text-xl md:text-2xl lg:text-3xl font-bold font-heading transition-colors duration-300 ${
                   isMenuOpen ? 'text-neutral hover:text-neutral/80' : 'text-primary hover:text-primary/80'
                 }`}
               >
@@ -116,7 +116,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-8 h-8"
+                  className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
                 >
                   <path
                     strokeLinecap="round"
@@ -132,44 +132,44 @@ export default function Navbar() {
 
       {/* Full Screen Overlay Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-primary/80 backdrop-blur-sm z-40 py-auto px-60">
-          <div className="container mx-auto px-4 h-full flex items-center">
-            <div className="flex flex-col space-y-10 max-w-md">
+        <div className="fixed inset-0 bg-primary/80 backdrop-blur-sm z-40 py-auto px-4 md:px-8 lg:px-60">
+          <div className="container mx-auto h-full flex items-center">
+            <div className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10 max-w-md">
               <div className="flex items-center">
-                {isActive('/') && <div className="mr-8 w-32 h-1 bg-white"></div>}
+                {isActive('/') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
                 <Link 
                   href="/" 
-                  className="text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
+                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Home
                 </Link>
               </div>
               <div className="flex items-center">
-                {isActive('/stories') && <div className="mr-8 w-32 h-1 bg-white"></div>}
+                {isActive('/stories') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
                 <Link 
                   href="/stories" 
-                  className="text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
+                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   About me
                 </Link>
               </div>
               <div className="flex items-center">
-                {isActive('/health') && <div className="mr-8 w-32 h-1 bg-white"></div>}
+                {isActive('/health') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
                 <Link 
                   href="/health" 
-                  className="text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
+                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Categories
                 </Link>
               </div>
               <div className="flex items-center">
-                {isActive('/inspiration') && <div className="mr-8 w-32 h-1 bg-white"></div>}
+                {isActive('/inspiration') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
                 <Link 
                   href="/inspiration" 
-                  className="text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
+                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Contact
