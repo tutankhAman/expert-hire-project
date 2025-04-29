@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function CategorySection({ selectedCategory, onCategorySelect, categories }) {
   const carouselRef = useRef(null);
+  const [hovered, setHovered] = useState(null);
   
   // Navigation functions for smooth scrolling
   const scrollLeft = () => {
@@ -22,8 +23,13 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
     }
   };
   
+  // Card sizes in rem
+  const originalW = 14, originalH = 14;
+  const expandedW = 16.5, expandedH = 19.5;
+  const remToPx = rem => rem * 16;
+  
   return (
-    <div className="w-full">
+    <div className="w-full my-12">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold">Explore by Category</h2>
         <div className="flex space-x-2">
@@ -47,60 +53,36 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
           </button>
         </div>
       </div>
-      
-      <div className="relative overflow-hidden">
+      <div className="min-h-[19.5rem] flex items-center">
         <div 
           ref={carouselRef}
-          className="flex overflow-x-auto gap-7 scrollbar-hide"
+          className="flex overflow-x-auto gap-7 scrollbar-hide w-full relative overflow-visible"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {categories.map((category) => (
+          {categories.map((category, idx) => (
             <div
               key={category.id}
-              className="relative flex-shrink-0 transition-all duration-500 ease-in-out group"
+              className={`relative flex-shrink-0 flex flex-col items-center justify-center bg-primary cursor-pointer transition-all duration-300 ease-in-out group mx-auto my-auto
+                w-[14rem] h-[14rem] ${hovered === idx ? 'w-[16.5rem] h-[19.5rem] z-10' : 'z-0'}
+              `}
+              onMouseEnter={() => setHovered(idx)}
+              onMouseLeave={() => setHovered(null)}
               style={{
-                height: '14rem',
-                width: '14rem',
-                transition: 'all 0.5s ease-in-out',
-                backgroundImage: `url(${category.image})`,
+                boxShadow: hovered === idx ? '0 8px 32px 0 rgba(0,0,0,0.15)' : '',
+                backgroundImage: hovered === idx ? `url(${category.image})` : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                transformOrigin: 'center center'
-              }}
-              onMouseEnter={(e) => {
-                const card = e.currentTarget;
-                const originalWidth = 14 * 16; // 14rem in pixels
-                const originalHeight = 14 * 16; // 14rem in pixels
-                const newWidth = 16.5 * 16; // 16.5rem in pixels
-                const newHeight = 19.5 * 16; // 19.5rem in pixels
-                
-                // Calculate the offset to keep the card centered
-                const widthDiff = (newWidth - originalWidth) / 2;
-                const heightDiff = (newHeight - originalHeight) / 2;
-                
-                card.style.width = `${newWidth}px`;
-                card.style.height = `${newHeight}px`;
-                card.style.marginLeft = `-${widthDiff}px`;
-                card.style.marginTop = `-${heightDiff}px`;
-              }}
-              onMouseLeave={(e) => {
-                const card = e.currentTarget;
-                card.style.width = '14rem';
-                card.style.height = '14rem';
-                card.style.marginLeft = '0';
-                card.style.marginTop = '0';
+                transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)'
               }}
             >
               <button
                 onClick={() => onCategorySelect(category.id)}
-                className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
-                  selectedCategory === category.id
-                    ? 'bg-primary/80 text-base shadow-lg scale-105'
-                    : 'bg-primary text-base shadow-md group-hover:bg-transparent'
-                }`}
+                className={`w-full h-full flex flex-col items-center justify-center transition-colors duration-300 ease-in-out 
+                  ${selectedCategory === category.id ? 'bg-primary/80 text-base shadow-lg scale-105' : 'bg-primary text-base shadow-md'}
+                `}
               >
-                <div className="h-1 w-16 bg-base mb-4 transition-all duration-500 group-hover:opacity-0"></div>
-                <h3 className="text-2xl font-semibold transition-all duration-500 group-hover:opacity-0">{category.title}</h3>
+                <div className="h-1 w-16 bg-base mb-4 transition-all duration-300 group-hover:opacity-0"></div>
+                <h3 className="text-2xl font-semibold transition-all duration-300 group-hover:opacity-0">{category.title}</h3>
               </button>
             </div>
           ))}
