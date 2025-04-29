@@ -20,11 +20,11 @@ export default function Home({ articles, categories }) {
         </div>
       </div>
 
-      {/* Main Content with 240px horizontal margin */}
-      <div className="mx-60">
-        <main className="py-8">
+      {/* Main Content with responsive horizontal margin */}
+      <div className="mx-4 md:mx-16 lg:mx-60">
+        <main className="py-4 md:py-8">
           {/* Categories Section */}
-          <section className="mb-12">
+          <section className="mb-8 md:mb-12">
             <CategorySection 
               selectedCategory={selectedCategory}
               onCategorySelect={setSelectedCategory}
@@ -32,7 +32,7 @@ export default function Home({ articles, categories }) {
             />
           </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-8">
             {/* Main Content */}
             <div className="lg:col-span-3">
               {/* Recent Articles Section */}
@@ -44,7 +44,7 @@ export default function Home({ articles, categories }) {
               </section>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar - shown below articles on mobile/tablet, right side on desktop */}
             <div className="lg:col-span-1">
               <Sidebar />
             </div>
