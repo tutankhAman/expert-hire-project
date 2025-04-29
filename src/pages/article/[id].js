@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/sections/Navbar';
 import InterestingArticles from '../../components/sections/InterestingArticles';
 import fs from 'fs';
 import path from 'path';
