@@ -1,8 +1,22 @@
+import Link from 'next/link';
+import Navbar from '../components/Navbar';
+
 export default function Custom404() {
   return (
-    <div className="error-page">
-      <h1>404 - Page Not Found</h1>
-      <p>The page you are looking for does not exist.</p>
+    <div className="min-h-screen bg-neutral">
+      <Navbar />
+      <main className="container mx-auto px-4 py-8">
+        <div className="max-w-2xl mx-auto text-center py-16">
+          <h1 className="text-6xl font-bold text-primary mb-4">404</h1>
+          <h2 className="text-3xl font-semibold mb-6">Page Not Found</h2>
+          <p className="text-gray-600 mb-8">
+            The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+          </p>
+          <Link href="/" className="inline-block bg-primary text-neutral px-6 py-3 rounded-full hover:bg-primary/80 transition-colors">
+            Return to Homepage
+          </Link>
+        </div>
+      </main>
     </div>
   );
 } 

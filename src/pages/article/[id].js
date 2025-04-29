@@ -12,7 +12,7 @@ export default function ArticlePage({ article }) {
   // If the page is still being generated, show a loading state
   if (router.isFallback) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-neutral">
         <Navbar />
         <div className="container mx-auto px-4 py-8">
           <div className="text-center py-12">
@@ -29,7 +29,7 @@ export default function ArticlePage({ article }) {
   // If the article doesn't exist, show 404
   if (!article) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-neutral">
         <Navbar />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-2xl mx-auto text-center py-16">
@@ -48,7 +48,7 @@ export default function ArticlePage({ article }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral">
       <Navbar />
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
