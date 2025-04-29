@@ -29,10 +29,10 @@ export default function ArticleCard({ article }) {
           <span className="mx-2 text-secondary text-lg">•</span>
           <span className="text-base text-secondary">{article.readingTime}</span>
         </div>
-        <h3 className="text-5xl font-bold mb-2">{article.title}</h3>
-        <p className="text-lg text-secondary mb-6">{truncateExcerpt(article.excerpt, 160)}</p>
+        <h3 className="text-5xl font-bold mb-2 line-clamp-2">{article.title}</h3>
+        <p className="text-lg text-secondary mb-6 line-clamp-3">{truncateExcerpt(article.excerpt, 160)}</p>
         <Link href={`/article/${article.id}`}>
-          <button className="bg-primary text-neutral px-9 py-4  hover:bg-gray-100 transition-colors">
+          <button className="bg-primary text-neutral px-9 py-4  hover:bg-neutral hover:text-primary border-2 border-primary transition-colors">
             Read More
           </button>
         </Link>

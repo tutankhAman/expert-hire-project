@@ -3,12 +3,13 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
+import InterestingArticles from '../../components/sections/InterestingArticles';
 import fs from 'fs';
 import path from 'path';
 import ReactMarkdown from 'react-markdown';
 import styles from '../../styles/Article.module.css';
 
-export default function ArticlePage({ article }) {
+export default function ArticlePage({ article, allArticles }) {
   const router = useRouter();
   
   // If the page is still being generated, show a loading state
@@ -59,8 +60,8 @@ export default function ArticlePage({ article }) {
               className="object-cover"
               priority
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-neutral w-[80vw] mx-auto ">
-              <div className="w-[80vw] mx-auto text-center px-[25rem]">
+            <div className="absolute bottom-0 left-0 right-0 bg-neutral w-[75vw] mx-auto ">
+              <div className="mx-auto text-center px-80">
                 <h1 className="text-6xl font-bold mt-16 mb-8 text-primary">{article.title}</h1>
                 <div className="flex justify-between items-center mb-4 text-primary">
                   <div className="flex items-center gap-4">
@@ -96,7 +97,7 @@ export default function ArticlePage({ article }) {
               </div>
             </div>
           </div>
-          <div className="w-[80vw] mx-auto px-[25rem]">
+          <div className="w-[75vw] mx-auto px-80">
             <div>
               <hr className="border-t border-gray-300 my-8" />
               <p className="mb-10 text-primary text-4xl italic text-center">{article.excerpt}</p>
@@ -106,6 +107,9 @@ export default function ArticlePage({ article }) {
             </div>
           </div>
         </article>
+        
+        {/* Interesting Articles Section */}
+        <InterestingArticles articles={allArticles} excludeId={article.id} />
       </main>
     </div>
   );
@@ -137,7 +141,12 @@ export async function getStaticProps({ params }) {
   
   // Find the article with the matching id
   const article = data.articles.find((article) => article.id === params.id);
-
+  
   // Pass article data to the page via props
-  return { props: { article } };
-} 
+  return { 
+    props: { 
+      article,
+      allArticles: data.articles
+    } 
+  };
+}
