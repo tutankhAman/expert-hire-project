@@ -115,6 +115,14 @@ export default function ArticlePage({ article, allArticles }) {
                 >
                   {article.title}
                 </motion.h1>
+                <motion.p 
+                  className={`text-base md:text-lg lg:text-xl mb-4 md:mb-6 lg:mb-8 italic ${
+                    isDarkMode ? 'text-secondary-dark' : 'text-secondary'
+                  }`}
+                  {...articlePageAnimations.articleAuthor}
+                >
+                  by {article.author}
+                </motion.p>
                 <motion.div 
                   className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 mb-4"
                   {...articlePageAnimations.articleMeta}
