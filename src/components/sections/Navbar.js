@@ -107,7 +107,7 @@ export default function Navbar() {
                     : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
               >
-                Mother's Day Tribute
+                Mother&apos;s Day Tribute
               </Link>
             </div>
 
