@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../../components/sections/Navbar';
 import InterestingArticles from '../../components/sections/InterestingArticles';
+import ReadingProgressBar from '../../components/sections/ReadingProgressBar';
 import fs from 'fs';
 import path from 'path';
 import ReactMarkdown from 'react-markdown';
@@ -57,6 +58,7 @@ export default function ArticlePage({ article, allArticles }) {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-neutral-dark' : 'bg-neutral'}`}>
       <Navbar />
+      <ReadingProgressBar />
       <main>
         <article>
           <div className="relative w-full h-[60vh] md:h-[75vh] lg:h-[90vh] overflow-hidden">
