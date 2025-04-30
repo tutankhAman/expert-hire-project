@@ -30,8 +30,11 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
+      const threshold = window.innerHeight * 0.2; 
+      setIsScrolled(scrollPosition > threshold);
     };
+
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -60,12 +63,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 py-4 md:py-6 lg:py-10 px-4 md:px-8 lg:px-60 transition-all duration-300 ${
+      <nav className={`fixed top-0 left-0 right-0 z-50 py-4 md:py-6 lg:py-10 px-4 md:px-8 lg:px-60 transition-all duration-500 ease-in-out ${
         isMenuOpen 
-          ? 'bg-primary/0 backdrop-blur-sm' 
+          ? 'bg-primary/0 backdrop-blur-md' 
           : isScrolled 
-            ? 'bg-neutral/95 dark:bg-neutral-dark/95 backdrop-blur-sm' 
-            : 'bg-neutral dark:bg-neutral-dark'
+            ? 'bg-neutral/95 dark:bg-neutral-dark/95 backdrop-blur-md' 
+            : 'bg-transparent'
       }`}>
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-8 md:h-9">
