@@ -156,9 +156,9 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className="flex items-center">
-                {isActive('/health') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
+                {isActive('/categories') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
                 <Link 
-                  href="/health" 
+                  href="/categories" 
                   className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
