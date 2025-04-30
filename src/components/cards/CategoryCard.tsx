@@ -1,13 +1,30 @@
-import React from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import React, { JSX } from 'react';
+import { useTheme } from '@/context/ThemeContext';
+import { CategoryCardProps } from '@/types/cards';
 
-export default function CategoryCard({ category, idx, hovered, setHovered, selectedCategory, onCategorySelect }) {
+interface ExtendedCategoryCardProps extends CategoryCardProps {
+  idx: number;
+  hovered: number | null;
+  setHovered: (idx: number | null) => void;
+  selectedCategory: string | null;
+  onCategorySelect: (categoryId: string) => void;
+}
+
+export default function CategoryCard({ 
+  category, 
+  idx, 
+  hovered, 
+  setHovered, 
+  selectedCategory, 
+  onCategorySelect,
+  className = ''
+}: ExtendedCategoryCardProps): JSX.Element {
   const { isDarkMode } = useTheme();
 
   return (
     <div
       className={`relative flex-shrink-0 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out group mx-auto my-auto
-        w-[10rem] h-[10rem] md:w-[14rem] md:h-[14rem] ${hovered === idx ? 'md:w-[16.5rem] md:h-[19.5rem] z-10' : 'z-0'}
+        w-[10rem] h-[10rem] md:w-[14rem] md:h-[14rem] ${hovered === idx ? 'md:w-[16.5rem] md:h-[19.5rem] z-10' : 'z-0'} ${className}
       `}
       style={{
         position: 'relative',

@@ -1,22 +1,40 @@
-import React from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import React, { JSX } from 'react';
+import { useTheme } from '@/context/ThemeContext';
+import { HighlightsCardProps } from '@/types/cards';
 
-const highlights = [
+interface Highlight {
+  id: number;
+  title: string;
+  description: string;
+  icon: JSX.Element;
+  color?: 'primary' | 'secondary' | 'accent';
+}
+
+const highlights: Highlight[] = [
   {
     id: 1,
     title: "Mother's Day Special",
+    description: "Celebrate the special women in your life",
+    icon: <span>🎁</span>,
+    color: 'primary'
   },
   {
     id: 2,
     title: "Featured Stories",
+    description: "Read our most popular articles",
+    icon: <span>🌟</span>,
+    color: 'secondary'
   },
   {
     id: 3,
     title: "Weekly Newsletter",
+    description: "Stay updated with our latest content",
+    icon: <span>📧</span>,
+    color: 'accent'
   }
 ];
 
-export default function HighlightsCard() {
+export default function HighlightsCard({ className = '' }: HighlightsCardProps): JSX.Element {
   const { isDarkMode } = useTheme();
 
   return (
