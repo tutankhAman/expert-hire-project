@@ -62,7 +62,7 @@ npm start
 
 ## 🌐 Live Demo
 
-[https://expert-hire-project.vercel.app/]
+https://expert-hire-project.vercel.app/
 
 ## 📝 Project Structure
 
