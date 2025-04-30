@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mother's Day Tribute Blog
 
-## Getting Started
+A beautiful and responsive blog website built with Next.js and Tailwind CSS, featuring a collection of heartwarming stories and articles dedicated to mothers. This project showcases modern web development practices with a focus on user experience and accessibility.
 
-First, run the development server:
+## 🚀 Features
 
+- **Responsive Design**: Fully responsive layout that works seamlessly across mobile, tablet, and desktop devices
+- **Dark Mode**: Built-in theme toggle for light and dark mode preferences
+- **Dynamic Content**: Article pages with dynamic routing and content loading
+- **Category Filtering**: Filter articles by different categories
+- **Search Functionality**: Live search feature to find articles quickly
+- **Reading Progress**: Progress bar to track reading progress
+- **Smooth Navigation**: Scroll-to-top button for better navigation
+- **Modern UI**: Clean and modern interface with smooth animations
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15.3.1
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **Markdown**: React Markdown
+- **Deployment**: Vercel
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/tutankhAman/expert-hire-project.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
+```bash
+cd expert-hire-project
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Install dependencies:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+The application will be available at `http://localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
+## 🏗️ Build and Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To create a production build:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+To start the production server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Live Demo
+
+[https://expert-hire-project.vercel.app/]
+
+## 📝 Project Structure
+
+```
+expert-hire-project/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── pages/         # Next.js pages and routing
+│   ├── styles/        # Global styles and Tailwind config
+│   └── utils/         # Utility functions and helpers
+├── public/            # Static assets
+└── package.json       # Project dependencies and scripts
+```
+
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
