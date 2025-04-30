@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import SearchOverlay from './SearchOverlay';
 import articles from '../../data/articles.json';
 import { useTheme } from '../../context/ThemeContext';
+import { motion, AnimatePresence } from 'framer-motion';
+import { navbarMenuAnimations } from '../../animations/navbarMenu';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,18 +65,24 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 py-4 md:py-6 lg:py-10 px-4 md:px-8 lg:px-60 transition-all duration-500 ease-in-out ${
-        isMenuOpen 
-          ? 'bg-primary/0 backdrop-blur-md' 
-          : isScrolled 
-            ? 'bg-neutral/95 dark:bg-neutral-dark/95 backdrop-blur-md' 
-            : 'bg-transparent'
-      }`}>
+      <motion.nav 
+        className={`fixed top-0 left-0 right-0 z-50 py-4 md:py-6 lg:py-10 px-4 md:px-8 lg:px-60 transition-all duration-500 ease-in-out ${
+          isMenuOpen 
+            ? 'bg-primary/0 backdrop-blur-md' 
+            : isScrolled 
+              ? 'bg-neutral/95 dark:bg-neutral-dark/95 backdrop-blur-md' 
+              : 'bg-transparent'
+        }`}
+        {...navbarMenuAnimations.navbar}
+      >
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-8 md:h-9">
             {/* Hamburger Menu */}
-            <div className="flex items-center">
-              <button
+            <motion.div 
+              className="flex items-center"
+              {...navbarMenuAnimations.hamburger}
+            >
+              <motion.button
                 onClick={toggleMenu}
                 className={`transition-colors duration-300 focus:outline-none ${
                   isMenuOpen 
@@ -82,6 +90,7 @@ export default function Navbar() {
                     : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
                 aria-label="Toggle menu"
+                {...navbarMenuAnimations.hamburgerButton}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -97,11 +106,14 @@ export default function Navbar() {
                     d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"}
                   />
                 </svg>
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
             {/* Center Heading */}
-            <div className="flex-1 text-center">
+            <motion.div 
+              className="flex-1 text-center"
+              {...navbarMenuAnimations.heading}
+            >
               <Link 
                 href="/" 
                 className={`text-xl md:text-2xl lg:text-3xl font-bold font-heading transition-colors duration-300 ${
@@ -112,12 +124,15 @@ export default function Navbar() {
               >
                 Mother&apos;s Day Tribute
               </Link>
-            </div>
+            </motion.div>
 
             {/* Right side icons */}
-            <div className="flex items-center space-x-4">
+            <motion.div 
+              className="flex items-center space-x-4"
+              {...navbarMenuAnimations.icons}
+            >
               {/* Theme Toggle */}
-              <button
+              <motion.button
                 onClick={toggleTheme}
                 className={`transition-colors duration-300 focus:outline-none ${
                   isMenuOpen 
@@ -125,6 +140,7 @@ export default function Navbar() {
                     : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
                 aria-label="Toggle theme"
+                {...navbarMenuAnimations.themeButton}
               >
                 {isDarkMode ? (
                   <svg
@@ -157,10 +173,10 @@ export default function Navbar() {
                     />
                   </svg>
                 )}
-              </button>
+              </motion.button>
 
               {/* Search Icon */}
-              <button
+              <motion.button
                 onClick={toggleSearch}
                 className={`transition-colors duration-300 focus:outline-none ${
                   isMenuOpen 
@@ -168,6 +184,7 @@ export default function Navbar() {
                     : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
                 aria-label="Search"
+                {...navbarMenuAnimations.searchButton}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -183,41 +200,80 @@ export default function Navbar() {
                     d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                   />
                 </svg>
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Full Screen Overlay Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-primary/80 dark:bg-primary-dark/80 backdrop-blur-sm z-40 py-auto px-4 md:px-8 lg:px-60">
-          <div className="container mx-auto h-full flex items-center">
-            <div className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10 max-w-md">
-              <div className="flex items-center">
-                {isActive('/') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-neutral dark:bg-neutral-dark"></div>}
-                <Link 
-                  href="/" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80 transition-colors duration-200"
-                  onClick={toggleMenu}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-primary/80 dark:bg-primary-dark/80 backdrop-blur-sm z-40 py-auto px-4 md:px-8 lg:px-60"
+            {...navbarMenuAnimations.overlay}
+          >
+            <motion.div 
+              className="container mx-auto h-full flex items-center"
+              {...navbarMenuAnimations.menuContainer}
+            >
+              <motion.div 
+                className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10 max-w-md"
+                {...navbarMenuAnimations.menuContent}
+              >
+                <motion.div 
+                  className="flex items-center"
+                  {...navbarMenuAnimations.menuItem}
+                  custom={0}
                 >
-                  Home
-                </Link>
-              </div>
-              <div className="flex items-center">
-                {isActive('/categories') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-neutral dark:bg-neutral-dark"></div>}
-                <Link 
-                  href="/categories" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80 transition-colors duration-200"
-                  onClick={toggleMenu}
+                  {isActive('/') && (
+                    <motion.div 
+                      className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-neutral dark:bg-neutral-dark"
+                      {...navbarMenuAnimations.activeIndicator}
+                    />
+                  )}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link 
+                      href="/" 
+                      className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80 transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      Home
+                    </Link>
+                  </motion.div>
+                </motion.div>
+                <motion.div 
+                  className="flex items-center"
+                  {...navbarMenuAnimations.menuItem}
+                  custom={1}
                 >
-                  Categories
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+                  {isActive('/categories') && (
+                    <motion.div 
+                      className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-neutral dark:bg-neutral-dark"
+                      {...navbarMenuAnimations.activeIndicator}
+                    />
+                  )}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link 
+                      href="/categories" 
+                      className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80 transition-colors duration-200"
+                      onClick={toggleMenu}
+                    >
+                      Categories
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Search Overlay */}
       <SearchOverlay isOpen={isSearchOpen} onClose={toggleSearch} />

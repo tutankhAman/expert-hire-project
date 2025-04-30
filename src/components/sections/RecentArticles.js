@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import ArticleCard from '../cards/ArticleCard';
 import { motion, AnimatePresence } from 'framer-motion';
+import { recentArticlesAnimations } from '../../animations/recentArticles';
 
 export default function RecentArticles({ articles, selectedCategory }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,108 +22,41 @@ export default function RecentArticles({ articles, selectedCategory }) {
     return (
       <motion.div 
         className="text-center py-12"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ 
-          duration: 0.5,
-          ease: [0.4, 0, 0.2, 1]
-        }}
+        {...recentArticlesAnimations.emptyState}
       >
         <p className="text-gray-600">No articles found in this category.</p>
       </motion.div>
     );
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 30,
-      scale: 0.95
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1]
-      }
-    },
-    exit: {
-      opacity: 0,
-      x: -50,
-      transition: {
-        duration: 0.4,
-        ease: [0.4, 0, 0.2, 1]
-      }
-    }
-  };
-
-  const paginationVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: 0.4,
-        ease: [0.4, 0, 0.2, 1]
-      }
-    }
-  };
-
   return (
     <motion.section
       initial="hidden"
       animate="visible"
-      variants={containerVariants}
+      variants={recentArticlesAnimations.section}
+      className="w-full my-8 md:my-12"
     >
       <motion.h2 
         className="text-4xl font-bold mb-8 text-primary dark:text-primary-dark"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ 
-          duration: 0.6,
-          ease: [0.4, 0, 0.2, 1]
-        }}
+        variants={recentArticlesAnimations.heading}
       >
         Recent Articles
       </motion.h2>
+      
       <motion.div 
         className="flex flex-col gap-8"
-        variants={containerVariants}
+        variants={recentArticlesAnimations.section}
       >
         <AnimatePresence mode="wait">
           {currentArticles.map((article) => (
             <motion.div
               key={article.id}
-              variants={itemVariants}
+              variants={recentArticlesAnimations.article}
               initial="hidden"
               animate="visible"
               exit="exit"
-              whileHover={{ 
-                scale: 1.02,
-                y: -5,
-                transition: { 
-                  duration: 0.3,
-                  ease: [0.4, 0, 0.2, 1]
-                }
-              }}
-              whileTap={{ 
-                scale: 0.98,
-                transition: { duration: 0.2 }
-              }}
+              whileHover="hover"
+              whileTap="tap"
             >
               <ArticleCard article={article} />
             </motion.div>
@@ -136,14 +68,14 @@ export default function RecentArticles({ articles, selectedCategory }) {
       {totalPages > 1 && (
         <motion.div 
           className="mt-12 flex flex-col items-center gap-6"
-          variants={paginationVariants}
+          variants={recentArticlesAnimations.pagination}
           initial="hidden"
           animate="visible"
         >
           <motion.div 
             className="flex items-center gap-2"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            whileHover="hover"
+            variants={recentArticlesAnimations.paginationContainer}
           >
             <motion.button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
@@ -154,14 +86,9 @@ export default function RecentArticles({ articles, selectedCategory }) {
                   : 'bg-white dark:bg-gray-800 text-primary dark:text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
               aria-label="Previous page"
-              whileHover={{ 
-                scale: currentPage !== 1 ? 1.1 : 1,
-                transition: { duration: 0.2 }
-              }}
-              whileTap={{ 
-                scale: currentPage !== 1 ? 0.95 : 1,
-                transition: { duration: 0.1 }
-              }}
+              whileHover={currentPage !== 1 ? "hover" : {}}
+              whileTap={currentPage !== 1 ? "tap" : {}}
+              variants={recentArticlesAnimations.paginationButton}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -178,15 +105,9 @@ export default function RecentArticles({ articles, selectedCategory }) {
                     : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
                 aria-label={`Page ${page}`}
-                whileHover={{ 
-                  scale: 1.1,
-                  y: -2,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ 
-                  scale: 0.95,
-                  transition: { duration: 0.1 }
-                }}
+                variants={recentArticlesAnimations.paginationButton}
+                whileHover="hover"
+                whileTap="tap"
               >
                 {page}
               </motion.button>
@@ -201,14 +122,9 @@ export default function RecentArticles({ articles, selectedCategory }) {
                   : 'bg-white dark:bg-gray-800 text-primary dark:text-primary-dark hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
               aria-label="Next page"
-              whileHover={{ 
-                scale: currentPage !== totalPages ? 1.1 : 1,
-                transition: { duration: 0.2 }
-              }}
-              whileTap={{ 
-                scale: currentPage !== totalPages ? 0.95 : 1,
-                transition: { duration: 0.1 }
-              }}
+              whileHover={currentPage !== totalPages ? "hover" : {}}
+              whileTap={currentPage !== totalPages ? "tap" : {}}
+              variants={recentArticlesAnimations.paginationButton}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -218,13 +134,7 @@ export default function RecentArticles({ articles, selectedCategory }) {
 
           <motion.div 
             className="text-sm text-gray-500 dark:text-gray-400"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              delay: 0.6,
-              duration: 0.4,
-              ease: [0.4, 0, 0.2, 1]
-            }}
+            variants={recentArticlesAnimations.paginationInfo}
           >
             Showing {startIndex + 1}-{Math.min(endIndex, filteredArticles.length)} of {filteredArticles.length} articles
           </motion.div>
