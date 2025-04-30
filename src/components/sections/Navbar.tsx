@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, JSX } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SearchOverlay from './SearchOverlay';
@@ -6,22 +6,23 @@ import articles from '../../data/articles.json';
 import { useTheme } from '../../context/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navbarMenuAnimations } from '../../animations/navbarMenu';
+import { Article } from '@/types/animation';
 
-export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+export default function Navbar(): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<Article[]>([]);
   const { isDarkMode, toggleTheme } = useTheme();
   const router = useRouter();
   const currentPath = router.pathname;
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleSearch = () => {
+  const toggleSearch = (): void => {
     setIsSearchOpen(!isSearchOpen);
     if (!isSearchOpen) {
       setSearchQuery('');
@@ -30,7 +31,7 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       const scrollPosition = window.scrollY;
       const threshold = window.innerHeight * 0.2; 
       setIsScrolled(scrollPosition > threshold);
@@ -56,12 +57,15 @@ export default function Navbar() {
         article.content.toLowerCase().includes(searchLower) ||
         article.excerpt.toLowerCase().includes(searchLower)
       );
-    });
+    }).map(article => ({
+      ...article,
+      readTime: article.readingTime
+    }));
 
     setSearchResults(results);
   }, [searchQuery]);
 
-  const isActive = (path) => currentPath === path;
+  const isActive = (path: string): boolean => currentPath === path;
 
   return (
     <>
@@ -269,6 +273,12 @@ export default function Navbar() {
                     </Link>
                   </motion.div>
                 </motion.div>
+                <motion.div 
+                  className="flex items-center"
+                  {...navbarMenuAnimations.menuItem}
+                  custom={2}
+                >
+                </motion.div>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -276,7 +286,11 @@ export default function Navbar() {
       </AnimatePresence>
 
       {/* Search Overlay */}
-      <SearchOverlay isOpen={isSearchOpen} onClose={toggleSearch} />
+      <SearchOverlay 
+        isOpen={isSearchOpen}
+        onClose={toggleSearch}
+        onSearch={setSearchQuery}
+      />
     </>
   );
 } 

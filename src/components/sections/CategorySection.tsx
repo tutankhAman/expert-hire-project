@@ -1,14 +1,25 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, JSX } from 'react';
 import CategoryCard from '../cards/CategoryCard';
 import { motion } from 'framer-motion';
 import { categorySectionAnimations } from '../../animations/categorySection';
+import { Category } from '@/types/animation';
 
-export default function CategorySection({ selectedCategory, onCategorySelect, categories }) {
-  const carouselRef = useRef(null);
-  const [hovered, setHovered] = useState(null);
+interface CategorySectionProps {
+  selectedCategory: string | null;
+  onCategorySelect: (categoryId: string) => void;
+  categories: Category[];
+}
+
+export default function CategorySection({ 
+  selectedCategory, 
+  onCategorySelect, 
+  categories 
+}: CategorySectionProps): JSX.Element {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
   
   // Navigation functions for smooth scrolling
-  const scrollLeft = () => {
+  const scrollLeft = (): void => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
         left: -300,
@@ -17,7 +28,7 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
     }
   };
   
-  const scrollRight = () => {
+  const scrollRight = (): void => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
         left: 300,
@@ -29,7 +40,7 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
   // Card sizes in rem
   const originalW = 14, originalH = 14;
   const expandedW = 16.5, expandedH = 19.5;
-  const remToPx = rem => rem * 16;
+  const remToPx = (rem: number): number => rem * 16;
   
   return (
     <div className="w-full my-8 md:my-12">

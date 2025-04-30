@@ -1,10 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, JSX, ChangeEvent, MouseEvent } from 'react';
 import Link from 'next/link';
-import articles from '../../data/articles.json';
+import articles from '@/data/articles.json';
+import { SearchOverlayProps } from '@/types/sections';
+import { Article } from '@/types/animation';
 
-export default function SearchOverlay({ isOpen, onClose }) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+export default function SearchOverlay({ 
+  isOpen, 
+  onClose,
+  onSearch,
+  className = '' 
+}: SearchOverlayProps): JSX.Element | null {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<Article[]>([]);
 
   useEffect(() => {
     if (searchQuery.trim() === '') {
@@ -20,21 +27,31 @@ export default function SearchOverlay({ isOpen, onClose }) {
         article.content.toLowerCase().includes(searchLower) ||
         article.excerpt.toLowerCase().includes(searchLower)
       );
-    });
+    }).map(article => ({
+      ...article,
+      readTime: article.readingTime
+    }));
 
     setSearchResults(results);
-  }, [searchQuery]);
+    onSearch(searchQuery);
+  }, [searchQuery, onSearch]);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>): void => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
   if (!isOpen) return null;
 
   return (
     <div 
-      className="fixed inset-0 bg-primary/80 backdrop-blur-sm z-50 py-auto px-4 md:px-8 lg:px-60"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
+      className={`fixed inset-0 bg-primary/80 backdrop-blur-sm z-50 py-auto px-4 md:px-8 lg:px-60 ${className}`}
+      onClick={handleOverlayClick}
     >
       <div className="container mx-auto h-full flex flex-col">
         {/* Fixed Search Input */}
@@ -43,14 +60,16 @@ export default function SearchOverlay({ isOpen, onClose }) {
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleInputChange}
               placeholder="Search articles..."
               className="w-full bg-transparent border-b-2 border-white text-white text-2xl md:text-3xl lg:text-4xl font-heading py-3 md:py-4 px-2 focus:outline-none placeholder-white/50"
               autoFocus
+              aria-label="Search articles"
             />
             <button
               onClick={onClose}
               className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-white/80 transition-colors duration-200"
+              aria-label="Close search"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

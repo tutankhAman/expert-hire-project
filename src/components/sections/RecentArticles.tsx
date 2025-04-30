@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useState, JSX } from 'react';
 import ArticleCard from '../cards/ArticleCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import { recentArticlesAnimations } from '../../animations/recentArticles';
+import { Article } from '@/types/animation';
 
-export default function RecentArticles({ articles, selectedCategory }) {
-  const [currentPage, setCurrentPage] = useState(1);
+interface RecentArticlesProps {
+  articles: Article[];
+  selectedCategory?: string;
+}
+
+export default function RecentArticles({ 
+  articles, 
+  selectedCategory 
+}: RecentArticlesProps): JSX.Element {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const articlesPerPage = 4;
 
   // Filter articles based on selected category (show all if 'all' or falsy)

@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, JSX } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReadMoreButton from '../buttons/ReadMoreButton';
 import { motion, AnimatePresence } from 'framer-motion';
 import { heroCarouselAnimations } from '../../animations/heroCarousel';
+import { Article } from '@/types/animation';
 
-export default function HeroCarousel({ articles }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+interface HeroCarouselProps {
+  articles: Article[];
+}
+
+export default function HeroCarousel({ articles }: HeroCarouselProps): JSX.Element {
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
   
   // Use the first 3 articles as featured stories
   const featuredStories = articles ? articles.slice(0, 3) : [];
@@ -19,11 +24,11 @@ export default function HeroCarousel({ articles }) {
     return () => clearInterval(interval);
   }, [featuredStories.length]);
 
-  const nextSlide = () => {
+  const nextSlide = (): void => {
     setCurrentSlide((prev) => (prev + 1) % featuredStories.length);
   };
 
-  const prevSlide = () => {
+  const prevSlide = (): void => {
     setCurrentSlide((prev) => (prev - 1 + featuredStories.length) % featuredStories.length);
   };
 
@@ -125,7 +130,7 @@ export default function HeroCarousel({ articles }) {
                         <motion.div
                           {...heroCarouselAnimations.content}
                         >
-                          <ReadMoreButton href={`/article/${story.id}`} />
+                          <ReadMoreButton href={`/article/${story.id}`}>Read More</ReadMoreButton>
                         </motion.div>
                       </motion.div>
                     </div>
@@ -138,4 +143,4 @@ export default function HeroCarousel({ articles }) {
       </div>
     </div>
   );
-}
+} 

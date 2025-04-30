@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import Image from 'next/image';
 import HighlightsCard from '../cards/HighlightsCard';
 import { useTheme } from '../../context/ThemeContext';
 
-const highlights = [
+interface Highlight {
+  id: number;
+  title: string;
+  description: string;
+}
+
+const highlights: Highlight[] = [
   {
     id: 1,
     title: "Mother's Day Special",
@@ -21,7 +27,7 @@ const highlights = [
   }
 ];
 
-export default function Sidebar() {
+export default function Sidebar(): JSX.Element {
   const { isDarkMode } = useTheme();
 
   return (
@@ -94,7 +100,7 @@ export default function Sidebar() {
       </div>
 
       {/* Highlights */}
-      <HighlightsCard />
+      <HighlightsCard className="shadow-md px-4 md:px-6 border-2 relative transition-colors duration-300" />
     </div>
   );
 } 
