@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import React, { useState, useEffect, JSX } from 'react';
+import { useTheme } from '@/context/ThemeContext';
+import { ScrollToTopButtonProps } from '@/types/buttons';
 
-export default function ScrollToTopButton() {
-  const [isVisible, setIsVisible] = useState(false);
+export default function ScrollToTopButton({ 
+  showAfterHeight = 300,
+  className = ''
+}: ScrollToTopButtonProps): JSX.Element {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+    const toggleVisibility = (): void => {
+      if (window.pageYOffset > showAfterHeight) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -16,9 +20,9 @@ export default function ScrollToTopButton() {
 
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
+  }, [showAfterHeight]);
 
-  const scrollToTop = () => {
+  const scrollToTop = (): void => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -34,7 +38,7 @@ export default function ScrollToTopButton() {
         isDarkMode 
           ? 'bg-primary-dark text-neutral-dark hover:bg-primary-dark/90' 
           : 'bg-primary text-neutral hover:bg-primary/90'
-      }`}
+      } ${className}`}
       aria-label="Scroll to top"
     >
       <svg
