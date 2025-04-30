@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Navbar from '../components/sections/Navbar';
+import ScrollToTopButton from '../components/buttons/ScrollToTopButton';
 
 export default function Custom404() {
   return (
@@ -17,6 +18,7 @@ export default function Custom404() {
           </Link>
         </div>
       </main>
+      <ScrollToTopButton />
     </div>
   );
 } 

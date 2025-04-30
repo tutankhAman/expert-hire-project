@@ -9,6 +9,7 @@ import path from 'path';
 import ReactMarkdown from 'react-markdown';
 import styles from '../../styles/Article.module.css';
 import { useTheme } from '../../context/ThemeContext';
+import ScrollToTopButton from '../../components/buttons/ScrollToTopButton';
 
 export default function ArticlePage({ article, allArticles }) {
   const router = useRouter();
@@ -132,6 +133,7 @@ export default function ArticlePage({ article, allArticles }) {
                 </div>
               </div>
             </div>
+            <ScrollToTopButton />
           </div>
           <div className="w-[90vw] md:w-[85vw] lg:w-[75vw] mx-auto px-4 md:px-8 lg:px-80">
             <div>

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import Navbar from '../components/sections/Navbar';
 import CompactArticleCard from '../components/cards/CompactArticleCard';
+import ScrollToTopButton from '../components/buttons/ScrollToTopButton';
 import fs from 'fs';
 import path from 'path';
 
@@ -26,6 +27,7 @@ export default function Categories({ articles, categories }) {
           />
         ))}
       </main>
+      <ScrollToTopButton />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import HeroCarousel from '../components/sections/HeroCarousel';
 import CategorySection from '../components/sections/CategorySection';
 import RecentArticles from '../components/sections/RecentArticles';
 import Sidebar from '../components/sections/Sidebar';
+import ScrollToTopButton from '../components/buttons/ScrollToTopButton';
 import fs from 'fs';
 import path from 'path';
 
@@ -51,6 +52,7 @@ export default function Home({ articles, categories }) {
           </div>
         </main>
       </div>
+      <ScrollToTopButton />
     </div>
   );
 }
