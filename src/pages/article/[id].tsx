@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { GetStaticProps, GetStaticPaths } from 'next';
 import Navbar from '../../components/sections/Navbar';
 import InterestingArticles from '../../components/sections/InterestingArticles';
 import ReadingProgressBar from '../../components/sections/ReadingProgressBar';
@@ -14,7 +15,24 @@ import ScrollToTopButton from '../../components/buttons/ScrollToTopButton';
 import { motion, AnimatePresence } from 'framer-motion';
 import { articlePageAnimations } from '../../animations/articlePage';
 
-export default function ArticlePage({ article, allArticles }) {
+interface Article {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  date: string;
+  image: string;
+  author: string;
+  readingTime: string;
+}
+
+interface ArticlePageProps {
+  article: Article | null;
+  allArticles: Article[];
+}
+
+export default function ArticlePage({ article, allArticles }: ArticlePageProps) {
   const router = useRouter();
   const { isDarkMode } = useTheme();
   
@@ -243,38 +261,38 @@ export default function ArticlePage({ article, allArticles }) {
   );
 }
 
-// This function gets called at build time
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   // Read the articles.json file
   const filePath = path.join(process.cwd(), 'src', 'data', 'articles.json');
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  const data = JSON.parse(fileContents);
-  
-  // Get the paths we want to pre-render neutrald on articles
-  const paths = data.articles.map((article) => ({
+  const articlesData = JSON.parse(fileContents);
+
+  // Get the paths we want to pre-render based on articles
+  const paths = articlesData.articles.map((article: Article) => ({
     params: { id: article.id },
   }));
 
   // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes will 404.
-  return { paths, fallback: false };
-}
+  // { fallback: false } means other routes should 404.
+  return {
+    paths,
+    fallback: true,
+  };
+};
 
-// This also gets called at build time
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params }) => {
   // Read the articles.json file
   const filePath = path.join(process.cwd(), 'src', 'data', 'articles.json');
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  const data = JSON.parse(fileContents);
-  
-  // Find the article with the matching id
-  const article = data.articles.find((article) => article.id === params.id);
-  
-  // Pass article data to the page via props
-  return { 
-    props: { 
+  const articlesData = JSON.parse(fileContents);
+
+  // Find the article with the matching ID
+  const article = articlesData.articles.find((article: Article) => article.id === params?.id) || null;
+
+  return {
+    props: {
       article,
-      allArticles: data.articles
-    } 
+      allArticles: articlesData.articles,
+    },
   };
-}
+}; 

@@ -1,39 +1,41 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
+import type { GetStaticProps } from 'next';
 import Navbar from '../components/sections/Navbar';
 import CompactArticleCard from '../components/cards/CompactArticleCard';
 import ScrollToTopButton from '../components/buttons/ScrollToTopButton';
 import fs from 'fs';
 import path from 'path';
 
-export default function Categories({ articles, categories }) {
-  // Group articles by category
-  const articlesByCategory = categories.reduce((acc, category) => {
-    acc[category.title] = articles.filter(article => article.category === category.title);
-    return acc;
-  }, {});
-
-  return (
-    <div className="min-h-screen bg-neutral dark:bg-neutral-dark">
-      <Navbar />
-      
-      <main className="mx-4 md:mx-16 lg:mx-60 py-8">
-        <h1 className="text-4xl md:text-5xl font-bold mt-20 mb-10">Categories</h1>
-        
-        {categories.map((category) => (
-          <CategoryArticlesSection
-            key={category.id}
-            category={category}
-            articles={articlesByCategory[category.title]}
-          />
-        ))}
-      </main>
-      <ScrollToTopButton />
-    </div>
-  );
+interface Article {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  image: string;
+  author: string;
+  readTime: string;
+  readingTime: string;
 }
 
-function CategoryArticlesSection({ category, articles }) {
-  const carouselRef = useRef(null);
+interface Category {
+  id: string;
+  title: string;
+  slug: string;
+}
+
+interface CategoriesProps {
+  articles: Article[];
+  categories: Category[];
+}
+
+interface CategoryArticlesSectionProps {
+  category: Category;
+  articles: Article[];
+}
+
+function CategoryArticlesSection({ category, articles }: CategoryArticlesSectionProps) {
+  const carouselRef = useRef<HTMLDivElement>(null);
   
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -94,7 +96,34 @@ function CategoryArticlesSection({ category, articles }) {
   );
 }
 
-export async function getStaticProps() {
+export default function Categories({ articles, categories }: CategoriesProps) {
+  // Group articles by category
+  const articlesByCategory = categories.reduce((acc, category) => {
+    acc[category.title] = articles.filter(article => article.category === category.title);
+    return acc;
+  }, {} as Record<string, Article[]>);
+
+  return (
+    <div className="min-h-screen bg-neutral dark:bg-neutral-dark">
+      <Navbar />
+      
+      <main className="mx-4 md:mx-16 lg:mx-60 py-8">
+        <h1 className="text-4xl md:text-5xl font-bold mt-20 mb-10">Categories</h1>
+        
+        {categories.map((category) => (
+          <CategoryArticlesSection
+            key={category.id}
+            category={category}
+            articles={articlesByCategory[category.title]}
+          />
+        ))}
+      </main>
+      <ScrollToTopButton />
+    </div>
+  );
+}
+
+export const getStaticProps: GetStaticProps<CategoriesProps> = async () => {
   // Read the articles.json file
   const articlesPath = path.join(process.cwd(), 'src', 'data', 'articles.json');
   const articlesContents = fs.readFileSync(articlesPath, 'utf8');
@@ -111,4 +140,4 @@ export async function getStaticProps() {
       categories: categoriesData.categories
     } 
   };
-} 
+}; 

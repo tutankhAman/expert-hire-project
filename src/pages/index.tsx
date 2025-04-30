@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { GetStaticProps } from 'next';
 import Navbar from '../components/sections/Navbar';
 import HeroCarousel from '../components/sections/HeroCarousel';
 import CategorySection from '../components/sections/CategorySection';
@@ -8,8 +9,31 @@ import ScrollToTopButton from '../components/buttons/ScrollToTopButton';
 import fs from 'fs';
 import path from 'path';
 
-export default function Home({ articles, categories }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+interface Article {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  image: string;
+  author: string;
+  readingTime: string;
+}
+
+interface Category {
+  id: string;
+  title: string;
+  count: number;
+  image: string;
+}
+
+interface HomeProps {
+  articles: Article[];
+  categories: Category[];
+}
+
+export default function Home({ articles, categories }: HomeProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   return (
     <div className="min-h-screen bg-neutral dark:bg-neutral-dark">
@@ -17,7 +41,7 @@ export default function Home({ articles, categories }) {
       <div className="relative">
         <HeroCarousel articles={articles} />
         <div className="absolute top-0 left-0 right-0 z-10">
-      <Navbar />
+          <Navbar />
         </div>
       </div>
 
@@ -57,8 +81,7 @@ export default function Home({ articles, categories }) {
   );
 }
 
-// This function gets called at build time
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   // Read the articles.json file
   const articlesPath = path.join(process.cwd(), 'src', 'data', 'articles.json');
   const articlesContents = fs.readFileSync(articlesPath, 'utf8');
@@ -76,4 +99,4 @@ export async function getStaticProps() {
       categories: categoriesData.categories
     } 
   };
-} 
+}; 
