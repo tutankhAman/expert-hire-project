@@ -24,7 +24,7 @@ export default function InterestingArticles({ articles, excludeId }) {
   if (randomArticles.length === 0) return null;
 
   return (
-    <section className="w-full mx-auto my-20">
+    <section className="w-full mx-auto mt-20">
       <div className="w-[80vw] mx-auto">
         <h2 className="text-4xl font-bold mb-10">Interesting Articles to Read</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
