@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function CategoryCard({ category, idx, hovered, setHovered, selectedCategory, onCategorySelect }) {
+  const { isDarkMode } = useTheme();
+
   return (
     <div
       className={`relative flex-shrink-0 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ease-in-out group mx-auto my-auto
@@ -29,7 +32,7 @@ export default function CategoryCard({ category, idx, hovered, setHovered, selec
       <div
         className="absolute inset-0 transition-opacity duration-300"
         style={{
-          backgroundColor: 'black',
+          backgroundColor: isDarkMode ? 'gray' : 'black',
           opacity: hovered === idx ? 0.2 : 1,
           zIndex: 1100,
         }}
@@ -44,8 +47,8 @@ export default function CategoryCard({ category, idx, hovered, setHovered, selec
         onMouseEnter={() => setHovered(idx)}
         onMouseLeave={() => setHovered(null)}
       >
-        <div className="h-1 w-12 md:w-16 bg-neutral mb-2 md:mb-4 transition-all duration-300"></div>
-        <h2 className="text-lg md:text-xl font-semibold text-neutral">{category.title}</h2>
+        <div className="h-1 w-12 md:w-16 bg-neutral dark:bg-neutral-dark mb-2 md:mb-4 transition-all duration-300"></div>
+        <h2 className="text-lg md:text-xl font-semibold text-neutral dark:text-neutral-dark">{category.title}</h2>
       </button>
     </div>
   );
