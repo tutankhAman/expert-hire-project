@@ -11,7 +11,7 @@ export default function Home({ articles, categories }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   return (
-    <div className="min-h-screen bg-neutral">
+    <div className="min-h-screen bg-neutral dark:bg-neutral-dark">
       {/* Hero Section with Navbar overlay */}
       <div className="relative">
         <HeroCarousel articles={articles} />

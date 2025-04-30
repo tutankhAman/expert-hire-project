@@ -3,7 +3,7 @@ import Navbar from '../components/sections/Navbar';
 
 export default function Custom404() {
   return (
-    <div className="min-h-screen bg-neutral">
+    <div className="min-h-screen bg-neutral dark:bg-neutral-dark">
       <Navbar />
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto text-center py-16">

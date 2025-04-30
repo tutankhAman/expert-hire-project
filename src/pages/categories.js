@@ -12,7 +12,7 @@ export default function Categories({ articles, categories }) {
   }, {});
 
   return (
-    <div className="min-h-screen bg-neutral">
+    <div className="min-h-screen bg-neutral dark:bg-neutral-dark">
       <Navbar />
       
       <main className="mx-4 md:mx-16 lg:mx-60 py-8">

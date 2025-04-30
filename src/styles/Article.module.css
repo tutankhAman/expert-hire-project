@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+.prose.dark {
+  color: #bbbdbd;
+}
+
 .prose h1 {
   color: #111827;
   font-weight: 800;
@@ -12,6 +16,10 @@
   line-height: 1.1111111;
 }
 
+.prose.dark h1 {
+  color: #ffffff;
+}
+
 .prose h2 {
   color: #111827;
   font-weight: 700;
@@ -19,6 +27,10 @@
   margin-top: 2em;
   margin-bottom: 1em;
   line-height: 1.3333333;
+}
+
+.prose.dark h2 {
+  color: #ffffff;
 }
 
 .prose p {
@@ -39,6 +51,11 @@
   padding: 0.5em 1em;
 }
 
+.prose.dark blockquote {
+  color: #ffffff;
+  border-left-color: #919d9d;
+}
+
 .prose blockquote p:first-of-type::before {
   content: open-quote;
 }
@@ -52,7 +69,15 @@
   font-weight: 600;
 }
 
+.prose.dark strong {
+  color: #ffffff;
+}
+
 .prose em {
   font-style: italic;
   color: #111827;
+}
+
+.prose.dark em {
+  color: #ffffff;
 } 
