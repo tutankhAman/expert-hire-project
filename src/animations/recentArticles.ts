@@ -1,4 +1,6 @@
-export const recentArticlesAnimations = {
+import { AnimationVariants } from '../types/framer-motion';
+
+export const recentArticlesAnimations: AnimationVariants = {
   section: {
     hidden: { opacity: 0 },
     visible: {

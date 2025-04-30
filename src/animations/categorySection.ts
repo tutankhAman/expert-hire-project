@@ -1,4 +1,6 @@
-export const categorySectionAnimations = {
+import { AnimationVariants } from '../types/framer-motion';
+
+export const categorySectionAnimations: AnimationVariants = {
   heading: {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },

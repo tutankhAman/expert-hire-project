@@ -1,4 +1,6 @@
-export const navbarMenuAnimations = {
+import { AnimationVariants } from '../types/framer-motion';
+
+export const navbarMenuAnimations: AnimationVariants = {
   overlay: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },

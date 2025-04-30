@@ -1,4 +1,6 @@
-export const articlePageAnimations = {
+import { AnimationVariants } from '../types/framer-motion';
+
+export const articlePageAnimations: AnimationVariants = {
   page: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
