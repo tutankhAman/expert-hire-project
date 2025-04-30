@@ -32,11 +32,11 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
   return (
     <div className="w-full my-8 md:my-12">
       <div className="flex justify-between items-center mb-4 md:mb-6">
-        <h2 className="text-2xl md:text-3xl font-bold">Explore by Category</h2>
+        <h2 className="text-2xl text-primary dark:text-primary-dark md:text-3xl font-bold">Explore by Category</h2>
         <div className="flex space-x-2">
           <button 
             onClick={scrollLeft}
-            className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90"
+            className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90 dark:bg-primary-dark dark:text-neutral-dark"
             aria-label="Scroll left"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,7 +45,7 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
           </button>
           <button 
             onClick={scrollRight}
-            className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90"
+            className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90 dark:bg-primary-dark dark:text-neutral-dark"
             aria-label="Scroll right"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

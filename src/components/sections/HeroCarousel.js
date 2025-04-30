@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReadMoreButton from '../buttons/ReadMoreButton';
 
 export default function HeroCarousel({ articles }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // Use the first 3 articles as featured stories
   const featuredStories = articles ? articles.slice(0, 3) : [];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % articles.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [articles.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % featuredStories.length);
@@ -50,12 +59,12 @@ export default function HeroCarousel({ articles }) {
               
               {/* Content with container margin */}
               <div className="absolute bottom-0 left-0 right-0 mx-4 md:mx-16 lg:mx-60 text-neutral">
-                <div className="relative w-full md:w-[600px] lg:w-[705px] h-[300px] md:h-[400px] lg:h-[498px] bg-neutral text-primary px-4 md:px-8">
+                <div className="relative w-full md:w-[600px] lg:w-[705px] h-[300px] md:h-[400px] lg:h-[498px] bg-neutral dark:bg-neutral-dark text-primary dark:text-primary-dark px-4 md:px-8">
                   {/* Navigation buttons - inside content container at top right */}
                   <div className="absolute top-0 right-0 md:right-[-64px] flex z-10">
                     <button
                       onClick={prevSlide}
-                      className="bg-primary text-neutral h-12 w-12 md:h-16 md:w-16 flex items-center justify-center"
+                      className="bg-primary dark:bg-primary-dark text-neutral dark:text-neutral-dark h-12 w-12 md:h-16 md:w-16 flex items-center justify-center"
                       aria-label="Previous slide"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
@@ -64,7 +73,7 @@ export default function HeroCarousel({ articles }) {
                     </button>
                     <button
                       onClick={nextSlide}
-                      className="bg-neutral text-primary h-12 w-12 md:h-16 md:w-16 flex items-center justify-center"
+                      className="bg-neutral dark:bg-neutral-dark text-primary dark:text-primary-dark h-12 w-12 md:h-16 md:w-16 flex items-center justify-center"
                       aria-label="Next slide"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
@@ -79,18 +88,7 @@ export default function HeroCarousel({ articles }) {
                     </span>
                     <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-2 md:mb-4">{story.title}</h2>
                     <p className="text-base md:text-lg lg:text-xl text-secondary mb-4 md:mb-8 line-clamp-2">{story.excerpt}</p>
-                    <Link 
-                      href={`/article/${story.id}`}
-                      passHref
-                      legacyBehavior
-                      data-article-id={story.id}
-                    >
-                      <a>
-                        <button className="bg-primary text-neutral px-6 md:px-9 py-2 md:py-4 hover:bg-gray-100 transition-colors">
-                          Read More
-                        </button>
-                      </a>
-                    </Link>
+                    <ReadMoreButton href={`/article/${story.id}`} />
                   </div>
                 </div>
               </div>

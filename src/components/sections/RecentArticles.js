@@ -18,7 +18,7 @@ export default function RecentArticles({ articles, selectedCategory }) {
 
   return (
     <section>
-      <h2 className="text-4xl font-bold mb-8">Recent Articles</h2>
+      <h2 className="text-4xl font-bold mb-8 text-primary dark:text-primary-dark">Recent Articles</h2>
       <div className="flex flex-col gap-8">
         {filteredArticles.map((article) => (
           <ArticleCard key={article.id} article={article} />
