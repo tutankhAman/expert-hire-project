@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SearchOverlay from './SearchOverlay';
 import articles from '../../data/articles.json';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const { isDarkMode, toggleTheme } = useTheme();
   const router = useRouter();
   const currentPath = router.pathname;
 
@@ -59,7 +61,11 @@ export default function Navbar() {
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 py-4 md:py-6 lg:py-10 px-4 md:px-8 lg:px-60 transition-all duration-300 ${
-        isMenuOpen ? 'bg-primary/0 backdrop-blur-sm' : isScrolled ? 'bg-neutral/95 backdrop-blur-sm' : ''
+        isMenuOpen 
+          ? 'bg-primary/0 backdrop-blur-sm' 
+          : isScrolled 
+            ? 'bg-neutral/95 dark:bg-neutral-dark/95 backdrop-blur-sm' 
+            : 'bg-neutral dark:bg-neutral-dark'
       }`}>
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-8 md:h-9">
@@ -68,7 +74,9 @@ export default function Navbar() {
               <button
                 onClick={toggleMenu}
                 className={`transition-colors duration-300 focus:outline-none ${
-                  isMenuOpen ? 'text-neutral hover:text-neutral/80' : 'text-primary hover:text-primary/80'
+                  isMenuOpen 
+                    ? 'text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80' 
+                    : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
                 aria-label="Toggle menu"
               >
@@ -94,19 +102,67 @@ export default function Navbar() {
               <Link 
                 href="/" 
                 className={`text-xl md:text-2xl lg:text-3xl font-bold font-heading transition-colors duration-300 ${
-                  isMenuOpen ? 'text-neutral hover:text-neutral/80' : 'text-primary hover:text-primary/80'
+                  isMenuOpen 
+                    ? 'text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80' 
+                    : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
               >
                 Mother's Day Tribute
               </Link>
             </div>
 
-            {/* Search Icon */}
-            <div className="flex items-center">
+            {/* Right side icons */}
+            <div className="flex items-center space-x-4">
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`transition-colors duration-300 focus:outline-none ${
+                  isMenuOpen 
+                    ? 'text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80' 
+                    : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
+                }`}
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+                    />
+                  </svg>
+                )}
+              </button>
+
+              {/* Search Icon */}
               <button
                 onClick={toggleSearch}
                 className={`transition-colors duration-300 focus:outline-none ${
-                  isMenuOpen ? 'text-neutral hover:text-neutral/80' : 'text-primary hover:text-primary/80'
+                  isMenuOpen 
+                    ? 'text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80' 
+                    : 'text-primary dark:text-primary-dark hover:text-primary/80 dark:hover:text-primary-dark/80'
                 }`}
                 aria-label="Search"
               >
@@ -132,47 +188,27 @@ export default function Navbar() {
 
       {/* Full Screen Overlay Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-primary/80 backdrop-blur-sm z-40 py-auto px-4 md:px-8 lg:px-60">
+        <div className="fixed inset-0 bg-primary/80 dark:bg-primary-dark/80 backdrop-blur-sm z-40 py-auto px-4 md:px-8 lg:px-60">
           <div className="container mx-auto h-full flex items-center">
             <div className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10 max-w-md">
               <div className="flex items-center">
-                {isActive('/') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
+                {isActive('/') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-neutral dark:bg-neutral-dark"></div>}
                 <Link 
                   href="/" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
+                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Home
                 </Link>
               </div>
               <div className="flex items-center">
-                {isActive('/stories') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
-                <Link 
-                  href="/stories" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
-                  onClick={toggleMenu}
-                >
-                  About me
-                </Link>
-              </div>
-              <div className="flex items-center">
-                {isActive('/categories') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
+                {isActive('/categories') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-neutral dark:bg-neutral-dark"></div>}
                 <Link 
                   href="/categories" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
+                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral dark:text-neutral-dark hover:text-neutral/80 dark:hover:text-neutral-dark/80 transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Categories
-                </Link>
-              </div>
-              <div className="flex items-center">
-                {isActive('/inspiration') && <div className="mr-4 md:mr-6 lg:mr-8 w-16 md:w-24 lg:w-32 h-1 bg-white"></div>}
-                <Link 
-                  href="/inspiration" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white hover:text-white/80 transition-colors duration-200"
-                  onClick={toggleMenu}
-                >
-                  Contact
                 </Link>
               </div>
             </div>
