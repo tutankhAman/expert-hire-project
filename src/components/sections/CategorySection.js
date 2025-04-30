@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import CategoryCard from '../cards/CategoryCard';
+import { motion } from 'framer-motion';
 
 export default function CategorySection({ selectedCategory, onCategorySelect, categories }) {
   const carouselRef = useRef(null);
@@ -32,26 +33,43 @@ export default function CategorySection({ selectedCategory, onCategorySelect, ca
   return (
     <div className="w-full my-8 md:my-12">
       <div className="flex justify-between items-center mb-4 md:mb-6">
-        <h2 className="text-2xl text-primary dark:text-primary-dark md:text-3xl font-bold">Explore by Category</h2>
+        <motion.h2 
+          className="text-2xl text-primary dark:text-primary-dark md:text-3xl font-bold"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          Explore by Category
+        </motion.h2>
         <div className="flex space-x-2">
-          <button 
+          <motion.button 
             onClick={scrollLeft}
             className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90 dark:bg-primary-dark dark:text-neutral-dark"
             aria-label="Scroll left"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-          </button>
-          <button 
+          </motion.button>
+          <motion.button 
             onClick={scrollRight}
             className="p-1 md:p-2 bg-primary text-neutral hover:bg-primary/90 dark:bg-primary-dark dark:text-neutral-dark"
             aria-label="Scroll right"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </motion.button>
         </div>
       </div>
       <div className="min-h-[14rem] md:min-h-[19.5rem] flex items-center">
