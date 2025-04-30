@@ -5,9 +5,16 @@ export interface AnimationVariants {
 }
 
 export interface MotionVariant {
-  hidden: Record<string, any>;
-  visible: Record<string, any>;
+  initial: Record<string, any>;
+  animate: Record<string, any> & {
+    transition?: {
+      duration?: number;
+      delay?: number;
+      ease?: string;
+      [key: string]: any;
+    };
+  };
   exit?: Record<string, any>;
-  hover?: Record<string, any>;
-  tap?: Record<string, any>;
+  whileHover?: Record<string, any>;
+  whileTap?: Record<string, any>;
 } 

@@ -2,8 +2,8 @@ import { AnimationVariants } from '../types/framer-motion';
 
 export const recentArticlesAnimations: AnimationVariants = {
   section: {
-    hidden: { opacity: 0 },
-    visible: {
+    initial: { opacity: 0 },
+    animate: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
@@ -12,8 +12,8 @@ export const recentArticlesAnimations: AnimationVariants = {
     }
   },
   heading: {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
+    initial: { opacity: 0, x: -30 },
+    animate: {
       opacity: 1,
       x: 0,
       transition: {
@@ -23,12 +23,12 @@ export const recentArticlesAnimations: AnimationVariants = {
     }
   },
   article: {
-    hidden: { 
+    initial: { 
       opacity: 0, 
       y: 30,
       scale: 0.95
     },
-    visible: {
+    animate: {
       opacity: 1,
       y: 0,
       scale: 1,
@@ -45,7 +45,7 @@ export const recentArticlesAnimations: AnimationVariants = {
         ease: [0.4, 0, 0.2, 1]
       }
     },
-    hover: {
+    whileHover: {
       scale: 1.02,
       y: -5,
       transition: { 
@@ -53,14 +53,14 @@ export const recentArticlesAnimations: AnimationVariants = {
         ease: [0.4, 0, 0.2, 1]
       }
     },
-    tap: {
+    whileTap: {
       scale: 0.98,
       transition: { duration: 0.2 }
     }
   },
   pagination: {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
+    initial: { opacity: 0, y: 20 },
+    animate: {
       opacity: 1,
       y: 0,
       transition: {
@@ -71,23 +71,23 @@ export const recentArticlesAnimations: AnimationVariants = {
     }
   },
   paginationButton: {
-    hover: {
+    whileHover: {
       scale: 1.1,
       y: -2,
       transition: { duration: 0.2 }
     },
-    tap: {
+    whileTap: {
       scale: 0.95,
       transition: { duration: 0.1 }
     }
   },
   paginationContainer: {
-    hover: { scale: 1.02 },
-    transition: { duration: 0.3 }
+    whileHover: { scale: 1.02 },
+    animate: { transition: { duration: 0.3 } }
   },
   paginationInfo: {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
+    initial: { opacity: 0, y: 10 },
+    animate: {
       opacity: 1,
       y: 0,
       transition: {
@@ -98,8 +98,8 @@ export const recentArticlesAnimations: AnimationVariants = {
     }
   },
   emptyState: {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: {
       opacity: 1,
       scale: 1,
       transition: {
