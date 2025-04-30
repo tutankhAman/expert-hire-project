@@ -11,11 +11,11 @@ export default function HeroCarousel({ articles }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % articles.length);
+      setCurrentSlide((prev) => (prev + 1) % featuredStories.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [articles.length]);
+  }, [featuredStories.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % featuredStories.length);
