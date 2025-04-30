@@ -7,6 +7,7 @@ A beautiful and responsive blog website built with Next.js and Tailwind CSS, fea
 - **Responsive Design**: Fully responsive layout that works seamlessly across mobile, tablet, and desktop devices
 - **Dark Mode**: Built-in theme toggle for light and dark mode preferences
 - **Dynamic Content**: Article pages with dynamic routing and content loading
+- **Pagination**: Pagination in Recent Articles to ensure no infinite scrolling happens
 - **Category Filtering**: Filter articles by different categories
 - **Search Functionality**: Live search feature to find articles quickly
 - **Reading Progress**: Progress bar to track reading progress
